@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK for Python.
-# Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-# session persistence, api calls, and more.
 # This sample is built using the handler classes approach in skill builder.
 import logging
 import ask_sdk_core.utils as ask_utils
@@ -39,6 +36,7 @@ def provide_line_status(user_input):
     
     return speak_output
 
+# This class builds the lines that possibly not working well
 class AvoidIntent(AbstractRequestHandler):
     """Handler for Avoid Intent."""
     def can_handle(self, handler_input):
@@ -58,7 +56,7 @@ class AvoidIntent(AbstractRequestHandler):
             if(sentence != 'Good Service'):
                 lines_to_avoid += line + ", "
         
-        speak_output = "Today's possible lines to avoid follow: {line}".format(line=lines_to_avoid)
+        speak_output = "Today's possible lines to avoid follow: {line}".format(line=lines_to_avoid[:-2])
 
         return (
             handler_input.response_builder
